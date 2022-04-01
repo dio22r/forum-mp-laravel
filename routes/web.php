@@ -42,9 +42,9 @@ Route::group(["prefix" => "resources"], function () {
     Route::get('/gereja-by-wilayah', [FormController::class, 'gerejaByWilayah'])->name('resource.gereja-by-wilayah');
 });
 
-// Auth::routes([
-//     'register' => false, // Registration Routes...
-// ]);
+Auth::routes([
+    // 'register' => false, // Registration Routes...
+]);
 
 Route::get('/register/gembala/5526f5323af331ab22dac08d817cfb7520a80fc1', [RegisterGerejaController::class, "showRegistrationForm"])->name("register.gembala");
 Route::post('/register/gembala/5526f5323af331ab22dac08d817cfb7520a80fc1', [RegisterGerejaController::class, "register"]);
