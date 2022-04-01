@@ -28,9 +28,9 @@
     <div class="card-body">
         <h5 class="card-title">Haleluya</h5>
         <p class="card-text">
-            Selamat Datang di Aplikasi Forum GPdI Sulut.
+            Selamat Datang di Aplikasi Forum Depdikjar Majelis Pusat GPdI .
             Biarlah kita dapat saling memberkati lewat aplikasi ini.
-            Ini merupakan Aplikasi Forum Diskusi resmi dari Majelis Daerah GPdI Sulut
+            Ini merupakan Aplikasi Forum Diskusi resmi dari Depdikjar Majelis Pusat GPdI Sulut
         </p>
         @guest
         <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
