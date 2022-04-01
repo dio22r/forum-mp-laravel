@@ -85,8 +85,8 @@ class RegisterController extends Controller
         ]);
 
         $user->Role()->attach(9, [
-            'ref_id' => $data['ref_id'],
-            'ref_type' => MhGereja::class
+            'ref_id' => null,
+            'ref_type' => null
         ]);
 
         return $user;
