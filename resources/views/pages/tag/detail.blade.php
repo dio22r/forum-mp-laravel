@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="d-flex mb-3 justify-content-between align-items-center">
-    <div class="display-5">Detail Tag</div>
+    <div class="display-5">Detail Topic</div>
 </div>
 <div class="card border mb-3 rounded-3">
     <div class="card-body">

@@ -5,7 +5,7 @@
     <div class="card-body">
         <form method="GET">
             <div class="input-group rounded-pill">
-                <input type="text" class="form-control" name="search" placeholder="Cari Tag" aria-describedby="button-addon2" value="{{ request('search') }}">
+                <input type="text" class="form-control" name="search" placeholder="Cari Topic" aria-describedby="button-addon2" value="{{ request('search') }}">
                 <button class="btn btn-outline-primary" type="submit" id="button-addon2">
                     <i class="fas fa-search"></i>
                 </button>
@@ -15,7 +15,7 @@
 </div>
 
 <div class="d-flex mb-3 justify-content-between align-items-center">
-    <div class="display-5">List Tag</div>
+    <div class="display-5">List Topic</div>
 
 
     @can('create', new App\Models\MhForumTag())

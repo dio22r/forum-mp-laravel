@@ -5,7 +5,7 @@
 <div class="card mb-3">
     <div class="list-group list-group-flush">
         <a href="/" class="list-group-item list-group-item-action">Semua Forum</a>
-        <a href="{{ route('tag') }}" class="list-group-item list-group-item-action">Semua Tag</a>
+        <a href="{{ route('tag') }}" class="list-group-item list-group-item-action">Semua Topic</a>
     </div>
 </div>
 
