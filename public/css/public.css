@@ -1,0 +1,23 @@
+.card-title > a,
+.card-title h5 > a {
+    text-decoration: none;
+    color: black;
+}
+
+.card-title > a:hover,
+.card-title h5 > a:hover {
+    color: #0d6efd;
+}
+
+p.card-text {
+    font-size: 1rem;
+    line-height: 1.2rem;
+    color: gray;
+    font-style: italic;
+}
+
+div.author {
+    font-size: 0.8rem;
+    color: gray;
+    text-decoration: underline;
+}
