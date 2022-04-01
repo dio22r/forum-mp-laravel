@@ -61,38 +61,6 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="mh_wilayah_id" class="col-md-4 col-form-label text-md-end">Wilayah</label>
-
-                            <div class="col-md-6">
-                                <select name="mh_wilayah_id" id="mh_wilayah_id" class="form-select" v-model="mh_wilayah_id" v-on:change="retrieveGereja">
-                                    @foreach($listWilayah as $wilayah)
-                                    <option value="{{ $wilayah->id }}" @if($wilayah->id == old('mh_wilayah_id')) selected @endif>
-                                        {{ $wilayah->code }}
-                                        {{ $wilayah->name }}
-                                    </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="ref_id" class="col-md-4 col-form-label text-md-end">
-                                <div id="spinner" class="spinner-grow spinner-grow-sm d-none" role="status">
-                                    <span class="visually-hidden">Loading...</span>
-                                </div>
-                                Gereja
-                            </label>
-
-                            <div class="col-md-6">
-                                <select name="ref_id" id="ref_id" class="form-select">
-                                    <option v-for="gereja in listGereja" :value="gereja.id">
-                                        @{{ gereja.name }}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

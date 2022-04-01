@@ -52,11 +52,7 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        $listWilayah = MhWilayah::get();
-
-        return view('auth.register', [
-            'listWilayah' => $listWilayah
-        ]);
+        return view('auth.register', []);
     }
 
     /**
@@ -71,7 +67,6 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'ref_id' => ['required', 'exists:App\Models\MhGereja,id']
         ]);
     }
 
