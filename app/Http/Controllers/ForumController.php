@@ -53,6 +53,10 @@ class ForumController extends Controller
     {
         $forum = new MhForumTopic();
 
+        $forum->title = old('title');
+        $forum->description = old('description');
+        $forum->mh_forum_tag_id = old('mh_forum_tag_id');
+
         return view("pages.forum.form", [
             "forum" => $forum,
             "tags" => MhForumTag::get(),
@@ -71,8 +75,22 @@ class ForumController extends Controller
         $forum->mh_forum_tag_id = $request->mh_forum_tag_id;
         $forum->created_by = Auth::id();
 
-        $status = $forum->save();
-        if (!$status) {
+        $forum = DB::transaction(function () use ($forum, $request) {
+            if ($request->image_bas64) {
+                $forum->images = $forum->doUpload($request);
+            }
+
+            if ($request->file('attachment')) {
+                $path = $request->file("attachment")->store("public/forum_attachment");
+                $forum->attachment = str_ireplace('public/', '', $path);
+            }
+
+            $status = $forum->save();
+            return $forum;
+        });
+
+
+        if (!$forum) {
             return back()->withInput();
         }
 
@@ -99,10 +117,19 @@ class ForumController extends Controller
         $forum->description = $request->description;
         $forum->created_by = Auth::id();
 
-        $status = $forum->save();
-        if (!$status) {
-            return back()->withInput();
-        }
+        $forum = DB::transaction(function () use ($forum, $request) {
+            if ($request->image_bas64) {
+                $forum->images = $forum->doUpload($request);
+            }
+
+            if ($request->file('attachment')) {
+                $path = $request->file("attachment")->store("public/forum_attachment");
+                $forum->attachment = str_ireplace('public/', '', $path);
+            }
+
+            $status = $forum->save();
+            return $forum;
+        });
 
         return redirect()->route("forum.detail", ["slug" => $forum->slug]);
     }

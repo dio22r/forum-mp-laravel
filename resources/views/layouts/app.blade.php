@@ -21,6 +21,8 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/public.css') }}" rel="stylesheet">
     <link href="{{ url('/assets/vendor/fa/css/all.min.css') }}" rel="stylesheet">
+
+    @yield('css')
 </head>
 
 <body class="bg-light">

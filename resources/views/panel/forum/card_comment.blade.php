@@ -1,6 +1,6 @@
 <div class="card shadow border mb-3 rounded-3">
     <div class="card-body  d-flex justify-content-between">
-        <div class="card-text">{{ $comment->comment }}</div>
+        <div class="card-text">{!! $comment->comment !!}</div>
 
         <div class="mt-2 ">
             @can('delete', $comment)

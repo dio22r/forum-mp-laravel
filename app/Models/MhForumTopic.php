@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MhForumTopic extends Model
 {
@@ -33,5 +35,18 @@ class MhForumTopic extends Model
             return $query->where("title", "like", "%" . $search . "%")
                 ->orWhere("description", "like", "%" . $search . "%");
         });
+    }
+
+    public function doUpload(Request $request)
+    {
+        //get the base-64 from data
+        $base64_str = substr($request->image_bas64, strpos($request->image_bas64, ",") + 1);
+
+        //decode base64 string
+        $image = base64_decode($base64_str);
+        $filename = time() . "_" . rand(100, 999) . "_forum.jpg";
+        $status = Storage::disk('public')->put('forum/' . $filename, $image);
+
+        return "forum/" . $filename;
     }
 }

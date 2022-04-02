@@ -26,7 +26,8 @@ class ForumRequest extends FormRequest
         return [
             "title" => "required",
             "description" => "required",
-            "mh_forum_tag_id" => "required|exists:App\Models\MhForumTag,id"
+            "mh_forum_tag_id" => "required|exists:App\Models\MhForumTag,id",
+            "attachment" => "nullable|file|max:5120|mimetypes:application/pdf,application/zip,application/x-rar-compressed"
         ];
     }
 }
