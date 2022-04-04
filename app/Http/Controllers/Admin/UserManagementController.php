@@ -22,7 +22,10 @@ class UserManagementController extends Controller
      */
     public function index()
     {
-        $dataUser = User::with("Role")->paginate(20);
+        $dataUser = User::with("Role")
+            ->whereHas("Role", function ($query) {
+                return $query->where("roles.id", "<>", 1);
+            })->paginate(20);
 
         // dd($dataUser);
         return view(
