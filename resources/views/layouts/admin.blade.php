@@ -16,10 +16,18 @@
     @yield('css')
 
     <title>{{ config('app.name', 'Laravel') }} | @yield('title')</title>
+
+    <style>
+        .bg-navbar {
+            background: rgb(199, 23, 47);
+            background: linear-gradient(90deg, rgba(199, 23, 47, 1) 0%, rgba(91, 75, 237, 1) 100%);
+            border-bottom: 2px solid yellow;
+            /* background-image: linear-gradient(90deg, #1b29d1, #8e00bf, #c400a8, #e8008f, #ff0077); */
+        }
+    </style>
 </head>
 
 <body>
-
     @include("panel.navbar")
 
     <div id="layoutSidenav">
