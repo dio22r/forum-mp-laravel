@@ -149,27 +149,30 @@ class RoleManagementController extends Controller
             ->where("ref_type", "=", Role::class)
             ->delete();
 
-        DB::transaction(function () use ($request) {
-            $role = Role::find($request->role_id);
-            $actions = MenuAction::whereIn("id", $request->action_id)
-                ->get();
+        if ($request->action_id) {
+            DB::transaction(function () use ($request) {
+                $role = Role::find($request->role_id);
+                $actions = MenuAction::whereIn("id", $request->action_id)
+                    ->get();
 
-            foreach ($actions as $action) {
-                $acl = new Acl();
+                foreach ($actions as $action) {
+                    $acl = new Acl();
 
-                $acl->ref_id = $request->role_id;
-                $acl->ref_type = Role::class;
-                $acl->menu_action_id = $action->id;
+                    $acl->ref_id = $request->role_id;
+                    $acl->ref_type = Role::class;
+                    $acl->menu_action_id = $action->id;
 
-                $acl->save();
-            }
+                    $acl->save();
+                }
 
-            $menuIds = MenuAction::whereIn("id", $request->action_id)
-                ->groupBy("menu_id")
-                ->pluck("menu_id");
+                $menuIds = MenuAction::whereIn("id", $request->action_id)
+                    ->groupBy("menu_id")
+                    ->pluck("menu_id");
 
-            $role->Menu()->sync($menuIds);
-        });
+                $role->Menu()->sync($menuIds);
+            });
+        }
+
 
         return back();
     }
