@@ -30,5 +30,28 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         Paginator::useBootstrap();
+
+
+        View::composer('panel.sidenav', function ($view) {
+            $sidemenu = [];
+
+            if (Auth::user()->hasVerifiedEmail()) {
+                $roles = Auth::user()->Role;
+                if ($roles) {
+
+                    $sidemenu = Menu::with(["Children" => function ($query) use ($roles) {
+                        $query->whereHas('Role', function ($query) use ($roles) {
+                            return $query->whereIn("roles.id", $roles->pluck("id")->toArray());
+                        });
+                    }])->orderBy('order')
+                        ->doesntHave('Parent')
+                        ->whereHas('Role', function ($query) use ($roles) {
+                            return $query->whereIn("roles.id", $roles->pluck("id")->toArray());
+                        })->get();
+                }
+            }
+
+            $view->with('sidemenu', $sidemenu);
+        });
     }
 }

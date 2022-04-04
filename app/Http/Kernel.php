@@ -2,7 +2,9 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AdminOnly;
 use App\Http\Middleware\MenuAuthorization;
+use App\Http\Middleware\MustVerified;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -63,6 +65,8 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'menuautho' => MenuAuthorization::class
+        'menuautho' => MenuAuthorization::class,
+        'mustverified' => MustVerified::class,
+        'adminonly' => AdminOnly::class
     ];
 }

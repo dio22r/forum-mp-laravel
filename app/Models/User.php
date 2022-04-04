@@ -59,4 +59,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->morphedByMany(MhWilayah::class, "ref", "user_role");
     }
+
+    public function isAdmin()
+    {
+        $userRoles = $this->Role->whereIn("id", [1, 2]);
+        if ($userRoles->count() == 0) return false;
+
+        return true;
+    }
 }

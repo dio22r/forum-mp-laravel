@@ -73,6 +73,12 @@
                                     <i class="fas fa-comment-alt"></i> Buat Forum
                                 </a>
 
+                                @if(Auth::user()->isAdmin())
+                                <a class="dropdown-item text-bold text-warning" href="{{ route('admin.home') }}">
+                                    <i class="fas fa-user-shield"></i> Admin Area
+                                </a>
+                                @endif
+
                                 <hr />
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
